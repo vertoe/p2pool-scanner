@@ -82,6 +82,13 @@ Date())+"</span></center><p/>"
         _.each(list, function(info) {
             var ip = info.ip;
 
+            if (ip == '178.63.15.130') {
+                ip = 'q30.qhor.net';
+            }
+            if (ip == '176.9.64.195') {
+                ip = 'p2cache.syware.de';
+            }
+
             var uptime = info.stats ? (info.stats.uptime / 60 / 60 / 24).toFixed(1) : "N/A";
             var fee = (info.fee || 0).toFixed(2);
 
