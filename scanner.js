@@ -22,8 +22,8 @@ function Scanner(options) {
     self.geo = new Geo({ timeout : config.http_socket_timeout });
 
   	// -----------------------------------------
-   	// local http server interface 
-    if(config.http_port) 
+   	// local http server interface
+    if(config.http_port)
     {
         var express = require('express');
         var app = express();
@@ -35,9 +35,9 @@ function Scanner(options) {
             res.write(str);
             res.end();
         });
-        
+
         http.createServer(app).listen(config.http_port, function() {
-            console.log("HTTP server listening on port: ",config.http_port);    
+            console.log("HTTP server listening on port: ",config.http_port);
         });
     }
 
@@ -54,7 +54,7 @@ function Scanner(options) {
             +"a:visited { text-decoration: none; color: #0051AD; }"
             +"a:hover { text-decoration: none; color: #F04800; }"
             +".row-grey { background-color: #f3f3f3;  }"
-            +".p2p {  width: 728px; margin-left: 200px; border: 1px solid #aaa;  box-shadow: 2px 2px 2px #aaa; padding: 2px;  }"
+            +".p2p {  width: 728px; margin: auto; border: 1px solid #aaa;  box-shadow: 2px 2px 2px #aaa; padding: 2px;  }"
             +".p2p-row { width: 710px; padding: 10px; height: 16px; }"
             +".p2p-caption { width: 710px; text-align: center;  background-color: #ddd; padding-top: 4px; padding-bottom: 8px;}"
             +".p2p div { float : left; }"
@@ -66,8 +66,8 @@ function Scanner(options) {
             +"</style>"
             +"</head><body>";
         if(logo)
-            str += "<div style='float:left;margin:16px;'><img src=\""+logo+"\" height='30' /></div><br style='clear:both;'/>";
-        str += "<center><a href='https://github.com/Sykh/p2pool-cache' target='_blank'>PEER TO PEER "+(config.currency.toUpperCase())+" MINING NETWORK</a> - PUBLIC NODE LIST<br/><span style='font-size:10px;color:#333;'>GENERATED ON: "+(new 
+            str += "<div style='float:top;margin:auto;'><center><img src=\""+logo+"\" height='30' /></center></div><br style='clear:both;'/>";
+        str += "<center><a href='https://github.com/Sykh/p2pool-cache' target='_blank'>PEER TO PEER "+(config.currency.toUpperCase())+" MINING NETWORK</a> - PUBLIC NODE LIST<br/><span style='font-size:10px;color:#333;'>GENERATED ON: "+(new
 Date())+"</span></center><p/>"
         if(self.poolstats)
             str += "<center>Pool speed: "+(self.poolstats.pool_hash_rate/1000000).toFixed(2)+" "+config.speed_abbrev+"</center>";
@@ -85,7 +85,7 @@ Date())+"</span></center><p/>"
             var uptime = info.stats ? (info.stats.uptime / 60 / 60 / 24).toFixed(1) : "N/A";
             var fee = (info.fee || 0).toFixed(2);
 
-            str += "<div class='p2p-row "+(row++ & 1 ? "row-grey" : "")+"'><div class='p2p-ip'><a href='http://"+ip+":9327/static/' target='_blank'>"+ip+":9327</a></div><div class='p2p-fee'>"+fee+"%</div><div class='p2p-uptime'>"+uptime+" days</div>";
+            str += "<div class='p2p-row "+(row++ & 1 ? "row-grey" : "")+"'><div class='p2p-ip'><a href='http://"+ip+":8336/static/' target='_blank'>"+ip+":8336</a></div><div class='p2p-fee'>"+fee+"%</div><div class='p2p-uptime'>"+uptime+" days</div>";
             str += "<div class='p2p-geo'>";
             if(info.geo) {
                 str += "<a href='http://www.geoiptool.com/en/?IP="+info.ip+"' target='_blank'>"+info.geo.country+" "+"<img src='"+info.geo.img+"' align='absmiddle' border='0'/></a>";
@@ -133,7 +133,7 @@ Date())+"</span></center><p/>"
             else {
                 try {
                     var addr_list = JSON.parse(data);
-                    self.inject(addr_list);                    
+                    self.inject(addr_list);
 
                     // main init
                     if(p2pool_init) {
@@ -142,7 +142,7 @@ Date())+"</span></center><p/>"
                         // if we can read p2pool addr file, also add our pre-collected IPs
                         // if(filename != config.init_file) {
                             var init_addr = JSON.parse(fs.readFileSync(config.init_file, 'utf8'));
-                            self.inject(init_addr);                    
+                            self.inject(init_addr);
                         //}
 
                         for(var i = 0; i < (config.probe_N_IPs_simultaneously || 1); i++)
@@ -159,7 +159,7 @@ Date())+"</span></center><p/>"
             dpc(1000 * 60, self.update);
         })
     }
-    
+
     // store public pools in a file that reloads at startup
     self.store_working = function() {
         var data = JSON.stringify(self.addr_working);
@@ -255,7 +255,7 @@ Date())+"</span></center><p/>"
 
         var options = {
           host: info.ip,
-          port: 9327,
+          port: 8336,
           path: '/fee',
           method: 'GET'
         };
@@ -267,7 +267,7 @@ Date())+"</span></center><p/>"
 
         var options = {
           host: info.ip,
-          port: 9327,
+          port: 8336,
           path: '/local_stats',
           method: 'GET'
         };
@@ -279,7 +279,7 @@ Date())+"</span></center><p/>"
 
         var options = {
           host: info.ip,
-          port: 9327,
+          port: 8336,
           path: '/global_stats',
           method: 'GET'
         };
@@ -289,7 +289,7 @@ Date())+"</span></center><p/>"
 
     // make http request to the target node ip
     self.request = function(options, callback, is_plain)
-    {    
+    {
         http_handler = http;
         var req = http_handler.request(options, function(res) {
             res.setEncoding('utf8');
@@ -314,7 +314,7 @@ Date())+"</span></center><p/>"
         });
 
         req.on('socket', function (socket) {
-            socket.setTimeout(config.http_socket_timeout);  
+            socket.setTimeout(config.http_socket_timeout);
             socket.on('timeout', function() {
                 req.abort();
             });
@@ -360,4 +360,4 @@ Date())+"</span></center><p/>"
 GLOBAL.scanner = new Scanner();
 
 
-//  
+//
