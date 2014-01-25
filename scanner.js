@@ -66,7 +66,7 @@ function Scanner(options) {
             +"</style>"
             +"</head><body>";
         if(logo)
-            str += "<div style='float:top;margin:auto;'><center><img src=\""+logo+"\" height='30' /></center></div><br style='clear:both;'/>";
+            str += "<div style='float:top;margin:auto;'><center><a href='http://cachecoin.org/' target='_blank'><img src=\""+logo+"\" height='60' /></a></center></div><br style='clear:both;'/>";
         str += "<center><a href='https://github.com/Sykh/p2pool-cache' target='_blank'>PEER TO PEER "+(config.currency.toUpperCase())+" MINING NETWORK</a> - PUBLIC NODE LIST<br/><span style='font-size:10px;color:#333;'>GENERATED ON: "+(new
 Date())+"</span></center><p/>"
         if(self.poolstats)
