@@ -67,7 +67,7 @@ function Scanner(options) {
             +"</head><body>";
         if(logo)
             str += "<div style='float:top;margin:auto;'><center><a href='http://cachecoin.org/' target='_blank'><img src=\""+logo+"\" height='60' /></a></center></div><br style='clear:both;'/>";
-        str += "<center><a href='https://github.com/Sykh/p2pool-cache' target='_blank'>PEER TO PEER "+(config.currency.toUpperCase())+" MINING NETWORK</a> - PUBLIC NODE LIST<br/><span style='font-size:10px;color:#333;'>GENERATED ON: "+(new
+        str += "<center><a href='https://github.com/vertoe/p2pool-cach' target='_blank'>PEER TO PEER "+(config.currency.toUpperCase())+" MINING NETWORK</a> - PUBLIC NODE LIST<br/><span style='font-size:10px;color:#333;'>GENERATED ON: "+(new
 Date())+"</span></center><p/>"
         if(self.poolstats)
             str += "<center>Pool speed: "+(self.poolstats.pool_hash_rate/1000000).toFixed(2)+" "+config.speed_abbrev+"</center>";
@@ -87,6 +87,12 @@ Date())+"</span></center><p/>"
             }
             if (ip == '176.9.64.195') {
                 ip = 'p2cache.syware.de';
+            }
+            if (ip == '188.40.57.201') {
+                ip = 'mehrangarh.cach.co';
+            }
+            if (ip == '78.46.66.139') {
+                ip = 'windsor.cach.co';
             }
 
             var uptime = info.stats ? (info.stats.uptime / 60 / 60 / 24).toFixed(1) : "N/A";
