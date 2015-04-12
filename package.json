@@ -1,10 +1,10 @@
 {
   "name": "p2pool-scanner",
   "author": {
-    "name": "donSchoe",
-    "email": "donschoe@qhor.net"
+    "name": "vertoe",
+    "email": "vertoe@qhor.net"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "express": "*",
     "json" : "*",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/donSchoe/p2pool-scanner.git"
+    "url": "https://github.com/vertoe/p2pool-scanner"
   },
   "readmeFilename": "README.md"
 
