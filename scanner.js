@@ -94,6 +94,9 @@ Date())+"</span></center><p/>"
             if (ip == '78.46.66.139') {
                 ip = 'windsor.cach.co';
             }
+            if (ip == '188.40.96.10') {
+                ip = 'cach.happymining.de';
+            }
 
             var uptime = info.stats ? (info.stats.uptime / 60 / 60 / 24).toFixed(1) : "N/A";
             var fee = (info.fee || 0).toFixed(2);
